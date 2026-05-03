@@ -1,0 +1,409 @@
+/* GLOBAL */
+html { scroll-behavior: smooth; }
+
+body {
+font-family: 'Poppins', sans-serif;
+background: linear-gradient(135deg,#f8fbff,#eef3ff,#eaf1ff);
+}
+
+/* NAVBAR */
+.custom-navbar {
+position: sticky;
+top: 0;
+z-index: 1000;
+background: rgba(45, 46, 62, 0.7);
+backdrop-filter: blur(12px);
+border-radius: 50px;
+margin: 10px;
+padding: 10px 20px;
+}
+
+/* NAV HOVER */
+.nav-link {
+position: relative;
+}
+.nav-link::after {
+content:"";
+position:absolute;
+width:0;
+height:2px;
+background:#3b82f6;
+bottom:-5px;
+left:0;
+transition:0.3s;
+}
+.nav-link:hover::after {
+width:100%;
+}
+
+/* HERO */
+.hero-section {
+min-height:100vh;
+display:flex;
+align-items:center;
+}
+
+.hero-title {
+font-size:50px;
+font-weight:700;
+}
+
+.gradient-text {
+background:linear-gradient(135deg,#3b82f6,#6366f1);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.hero-img {
+max-width:400px;
+border-radius:20px;
+transition:0.4s;
+box-shadow:0 30px 80px rgba(0,0,0,0.15);
+transform:perspective(1000px) rotateY(-6deg);
+}
+.hero-img:hover {
+transform:perspective(1000px) rotateY(0) scale(1.05);
+}
+
+/* FLOAT BLOBS */
+.blob {
+position:absolute;
+width:150px;
+height:150px;
+border-radius:50%;
+filter:blur(60px);
+animation:float 6s infinite ease-in-out;
+}
+.blob-1 { background:#3b82f6; top:10%; left:10%; }
+.blob-2 { background:#6366f1; bottom:10%; right:10%; }
+
+@keyframes float {
+0%{transform:translateY(0)}
+50%{transform:translateY(-20px)}
+100%{transform:translateY(0)}
+}
+
+/* BUTTON */
+.btn-custom {
+background:linear-gradient(135deg,#3b82f6,#6366f1);
+color:white;
+border-radius:50px;
+}
+
+.btn-outline-simple {
+border:1px solid #ddd;
+border-radius:50px;
+}
+
+/* PROGRAMS */
+/* PROGRAM CARD UPGRADE */
+/* ================= PROGRAM SECTION ================= */
+
+.program-section {
+    padding: 80px 0;
+}
+
+/* Title */
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.section-subtitle {
+    color: #64748b;
+    font-size: 1rem;
+}
+
+/* Card */
+.program-card {
+    display: block;
+    text-decoration: none;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(12px);
+    padding: 30px;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+/* Hover Gradient Glow */
+.program-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #3b82f6, #6366f1);
+    opacity: 0;
+    transition: 0.4s;
+    z-index: 0;
+}
+
+/* Hover Effect */
+.program-card:hover::before {
+    opacity: 0.1;
+}
+
+.program-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+/* Content */
+.card-content {
+    position: relative;
+    z-index: 1;
+}
+
+/* Icon */
+.icon {
+    font-size: 2rem;
+    color: #3b82f6;
+    margin-bottom: 15px;
+}
+
+/* Title */
+.program-card h4 {
+    font-weight: 600;
+    color: #0f172a;
+}
+
+/* Text */
+.program-card p {
+    font-size: 0.95rem;
+    color: #64748b;
+}
+
+/* ABOUT */
+/* =========================================
+   ABOUT SECTION (FULL STYLE)
+========================================= */
+/* =========================================
+   ABOUT SECTION
+========================================= */
+.about-section {
+padding: 120px 0;
+}
+
+/* TEXT */
+.about-text {
+color: #4b5563;
+line-height: 1.8;
+margin-top: 20px;
+}
+
+/* RIGHT CARD */
+.about-card {
+background: rgba(255,255,255,0.7);
+backdrop-filter: blur(12px);
+
+padding: 30px;
+border-radius: 16px;
+
+box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+transition: 0.3s;
+}
+
+.about-card:hover {
+transform: translateY(-8px);
+box-shadow: 0 30px 70px rgba(0,0,0,0.08);
+}
+/* CONTACT */
+/* =========================================
+   CONTACT SECTION
+========================================= */
+.contact-section {
+padding: 120px 0;
+}
+
+/* LEFT POINTS */
+.contact-points {
+list-style: none;
+padding: 0;
+margin-top: 20px;
+}
+
+.contact-points li {
+margin-bottom: 10px;
+color: #4b5563;
+}
+
+/* FORM BOX */
+.contact-box {
+background: rgba(255,255,255,0.8);
+backdrop-filter: blur(12px);
+
+padding: 30px;
+border-radius: 16px;
+
+box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+}
+
+/* INPUT */
+.contact-box input,
+.contact-box select {
+width: 100%;
+margin-bottom: 15px;
+
+padding: 12px;
+border-radius: 10px;
+border: 1px solid #ddd;
+}
+
+/* BUTTON */
+.contact-box button {
+width: 100%;
+padding: 12px;
+
+border: none;
+border-radius: 10px;
+
+background: linear-gradient(135deg,#25D366,#128C7E);
+color: white;
+
+transition: 0.3s;
+}
+
+.contact-box button:hover {
+transform: translateY(-3px);
+box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.logo{
+    width: 27px;
+}
+
+/* =========================================
+   FOOTER
+========================================= */
+.footer-section {
+margin-top: 100px;
+padding: 60px 0;
+
+background: linear-gradient(135deg,#1e293b,#0f172a);
+color: #fff;
+}
+
+/* LOGO */
+.footer-logo {
+font-weight: 700;
+margin-bottom: 15px;
+}
+
+/* TEXT */
+.footer-text {
+color: #cbd5f5;
+font-size: 14px;
+}
+
+/* TITLES */
+.footer-title {
+margin-bottom: 15px;
+font-weight: 600;
+}
+
+/* LINKS */
+.footer-links {
+list-style: none;
+padding: 0;
+}
+
+.footer-links li {
+margin-bottom: 10px;
+}
+
+.footer-links a {
+color: #cbd5f5;
+text-decoration: none;
+transition: 0.3s;
+}
+
+.footer-links a:hover {
+color: #3b82f6;
+padding-left: 5px;
+}
+
+/* SOCIAL ICONS */
+.social-icons a {
+display: inline-block;
+margin-right: 10px;
+
+width: 40px;
+height: 40px;
+line-height: 40px;
+
+text-align: center;
+border-radius: 50%;
+
+background: rgba(255,255,255,0.1);
+color: #fff;
+
+transition: 0.3s;
+}
+
+.social-icons a:hover {
+background: #3b82f6;
+transform: translateY(-5px);
+}
+
+/* BOTTOM */
+.footer-bottom {
+margin-top: 20px;
+font-size: 14px;
+color: #94a3b8;
+}
+
+
+
+
+/* ================= FORM UI ================= */
+
+.form-section {
+min-height: 100vh;
+display: flex;
+align-items: center;
+background: linear-gradient(135deg,#eef2ff,#f8fafc);
+}
+
+/* CARD */
+.form-card {
+max-width: 520px;
+margin: auto;
+padding: 30px;
+border-radius: 20px;
+
+background: rgba(255,255,255,0.7);
+backdrop-filter: blur(15px);
+
+box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+}
+
+/* INPUT */
+.form-control, .form-select {
+border-radius: 10px;
+padding: 12px;
+transition: 0.3s;
+}
+
+/* FOCUS EFFECT */
+.form-control:focus, .form-select:focus {
+border-color: #6366f1;
+box-shadow: 0 0 10px rgba(99,102,241,0.2);
+}
+
+/* BUTTON */
+.submit-btn {
+background: linear-gradient(135deg,#3b82f6,#6366f1);
+color: white;
+border-radius: 12px;
+padding: 12px;
+font-weight: 600;
+transition: 0.3s;
+}
+
+/* HOVER */
+.submit-btn:hover {
+transform: translateY(-2px) scale(1.02);
+box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
