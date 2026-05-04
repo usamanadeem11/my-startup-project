@@ -1,8 +1,7 @@
-const Razorpay = require("razorpay");
-const User = require("./models/User");
 const express = require("express");
 const mongoose = require("mongoose");
-const cors = require("cors");
+const Razorpay = require("razorpay");
+require("dotenv").config();
 
 
 const razorpay = new Razorpay({
