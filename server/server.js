@@ -65,7 +65,7 @@ app.get("/users", async (req, res) => {
 
 });
 
-const mongoose = require("mongoose");
+
 
 const userSchema = new mongoose.Schema({
   name: String,
