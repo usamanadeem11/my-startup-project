@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
   location: String,
   category: String,
   service: String,
+  paymentId: String
 });
 
 module.exports = mongoose.model("User", userSchema);

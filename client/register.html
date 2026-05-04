@@ -81,7 +81,7 @@
 </div>
 
 <!-- SUBMIT -->
-<button class="btn submit-btn w-100">Register Now</button>
+<button class="submit-btn" <form onsubmit="handleRegistration(event)">Register Now</button>
 
 </form>
 
@@ -209,30 +209,88 @@ categoryEl.addEventListener("change", updateServices);
 
 </script>
 
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
-document.querySelector("form").addEventListener("submit", async function(e){
+const form = document.querySelector("form");
 
-e.preventDefault();
+form.addEventListener("submit", async function(e){
+  e.preventDefault(); // STOP page refresh
 
-const data = {
-name: document.querySelectorAll("input")[0].value,
-phone: document.querySelectorAll("input")[1].value,
-email: document.querySelectorAll("input")[2].value,
-location: document.getElementById("location").value,
-category: document.getElementById("category").value,
-service: document.getElementById("service").value
+  console.log("Form clicked"); // check if working
+
+  try {
+
+    // STEP 1: Ask server to create order
+    const res = await fetch("http://localhost:5000/create-order", {
+      method: "POST"
+    });
+
+    const order = await res.json();
+    console.log(order);
+
+    // STEP 2: Open payment popup
+    const options = {
+      key: "rzp_test_SlH9cniYfJOTuE",
+      amount: order.amount,
+      currency: "INR",
+      name: "CUP Platform",
+      description: "Registration Fee",
+      order_id: order.id,
+
+      handler: async function (response) {
+
+        // STEP 3: Save user AFTER payment
+        const data = {
+          name: document.querySelectorAll("input")[0].value,
+          phone: document.querySelectorAll("input")[1].value,
+          email: document.querySelectorAll("input")[2].value,
+          location: document.getElementById("location").value,
+          category: document.getElementById("category").value,
+          service: document.getElementById("service").value,
+          paymentId: response.razorpay_payment_id
+        };
+
+        await fetch("http://localhost:5000/register", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        });
+
+        alert("✅ Payment successful!");
+      }
+    };
+
+    const rzp = new Razorpay(options);
+    rzp.open();
+
+  } catch (err) {
+    console.log(err);
+    alert("Error happened");
+  }
+});
+</script>
+<!-- Load Razorpay Script -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+async function payAndSubmit() {
+  // 1. Create the order on your server
+  const response = await fetch('/create-order', { method: 'POST' });
+  const order = await response.json();
+
+  // 2. Open the Razorpay Popup
+  const options = {
+    "key": "rzp_test_Sl0zhZsoQEx1C7", // This matches image_edc9e2.png
+    "amount": "15000", 
+    "currency": "INR",
+    "name": "Veltra",
+    // ... rest of your code
 };
-
-const res = await fetch("http://localhost:5000/register", {
-method: "POST",
-headers: { "Content-Type": "application/json" },
-body: JSON.stringify(data)
-});
-
-const result = await res.json();
-alert(result.message);
-
-});
+  const rzp = new Razorpay(options);
+  rzp.open();
+}
 </script>
 
 </body>
